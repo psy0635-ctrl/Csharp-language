@@ -21,6 +21,11 @@ namespace ConsoleApp1_0313
             Console.WriteLine(num1 + "*" + num2 + "=" + (num1 * num2));
             Console.WriteLine(num1 + "/" + num2 + "=" + ((double)num1 / num2));
 
+            bool one = 10 < 0;
+            bool two = 20 > 0;
+            Console.WriteLine(one);
+            Console.WriteLine(two);
+
 
 
 
