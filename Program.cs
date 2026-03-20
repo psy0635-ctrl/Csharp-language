@@ -16,10 +16,10 @@ namespace ConsoleApp1_0313
             Console.Write("두번째 숫자 입력 :"); 
             int num2 = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("덧셈 :" + (num1 + num2));
-            Console.WriteLine("뺄셈:" + (num1 - num2));
-            Console.WriteLine("곱셈 :" + (num1 * num2));
-            Console.WriteLine("나눗셈 :" + ((double)num1 / num2));
+            Console.WriteLine(num1 + "+" + num2 + "=" + (num1 + num2));
+            Console.WriteLine(num1 + "-" + num2 + "=" + (num1 - num2));
+            Console.WriteLine(num1 + "*" + num2 + "=" + (num1 * num2));
+            Console.WriteLine(num1 + "/" + num2 + "=" + ((double)num1 / num2));
 
 
 
