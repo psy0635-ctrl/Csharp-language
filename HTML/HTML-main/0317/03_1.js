@@ -1,1 +1,0 @@
-alert("AlertOuter JS ,JavaScript!");
