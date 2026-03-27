@@ -19,7 +19,8 @@ namespace Program0327.cs
 
             int result = input % 2;
 
-            // 조건문
+
+            // switch 조건문 (홀짝 구분)
             switch (result)
             {
                 case 0:
@@ -30,6 +31,8 @@ namespace Program0327.cs
                     break;
             }
 
+
+            //  switch 조건문 --> if 조건문 (홀짝 구분)
             if (result == 0)
             {
                 Console.WriteLine("짝수입니다.");
@@ -39,6 +42,9 @@ namespace Program0327.cs
                 Console.WriteLine("홀수입니다.");
 
             }
+
+
+            // switch 조건문 (계절 구분) --> break문을 의도적으로 사용하지 않는 예
             Console.Write("이번 달은 몇 월인가요 : ");
 
             int input = int.Parse(Console.ReadLine());
@@ -74,6 +80,8 @@ namespace Program0327.cs
                     break;
             }
 
+
+            // if 조건문(계절 구분) -- > break문을 의도적으로 사용하지 않는 예
             Console.WriteLine("이번 달은 몇 월인가요 : ");
 
             String s = Console.ReadLine();
@@ -103,6 +111,13 @@ namespace Program0327.cs
                 Console.WriteLine("가을입니다.");
             }
 
+
+            // 삼항 연산자 사용 예
+            Console.WriteLine(number % 2 == 0 ? true : false);
+
+
+
+            // String.Contains() 메서드 사용 예
             Console.WriteLine("입력:");
 
             string line = Console.ReadLine();
@@ -123,6 +138,8 @@ namespace Program0327.cs
             Console.WriteLine("출력");
             Console.WriteLine("출력");
 
+
+            // for 반복문 사용 예
             for (int i = 0; i < 1000; i++)   // for (초기화; 조건식; 증감식)
             {
                 Console.WriteLine("출력");
@@ -141,6 +158,8 @@ namespace Program0327.cs
             }
             Console.WriteLine(sum);
 
+
+            // 배열과 반복문 사용 예
             int[] intArray = { 52, 273, 32, 65, 103 };
             {
                 Console.WriteLine(intArray[0]);
@@ -150,6 +169,8 @@ namespace Program0327.cs
                 Console.WriteLine(intArray[4]);
             }
 
+
+            // 배열과 반복문 사용 예
             int[] intArray = { 52, 273, 32, 65, 103 };
 
             for (int i = 0; i < intArray.Length; i++)
@@ -168,6 +189,8 @@ namespace Program0327.cs
                 Console.WriteLine(array[i]);
             }
 
+
+            // while 반복문 사용 예
             int[] intArray = { 52, 273, 32, 65, 103 };
             int cnt = 0;
 
@@ -177,20 +200,17 @@ namespace Program0327.cs
                 cnt++;
             }
 
+
+            // while 반복문 사용 예
             while (!Console.ReadLine().Contains("X"))
             {
 
             }
             Console.WriteLine("프로그램 종료");
 
-            string[] array = { "사과", "배", "포도", "딸기", "바나나" };
-
-            foreach (string item in array)
-            {
-                Console.WriteLine(item);
-            }
 
 
+            // foreach 반복문 사용 예
             string[] array = { "사과", "배", "포도", "딸기", "바나나" };
 
             foreach (string item in array)
@@ -206,6 +226,7 @@ namespace Program0327.cs
             }
 
 
+            //break 조건문 or 반복문 탈출 예
             while (true)
             {
                 Console.WriteLine("숫자를 입력하세요 (짝수입력시 종료): ");
