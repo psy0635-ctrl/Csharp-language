@@ -1,0 +1,59 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\study\\Csharp-language\\Csharp_homestudy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CAB18E09-1320-4DEB-A38B-2A4821B8410D}|Csharp_homestudy\\Csharp_homestudy.csproj|c:\\study\\csharp-language\\csharp_homestudy\\csharp_homestudy\\study.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAB18E09-1320-4DEB-A38B-2A4821B8410D}|Csharp_homestudy\\Csharp_homestudy.csproj|solutionrelative:csharp_homestudy\\study.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAB18E09-1320-4DEB-A38B-2A4821B8410D}|Csharp_homestudy\\Csharp_homestudy.csproj|C:\\study\\Csharp-language\\Csharp_homestudy\\csharp_homestudy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAB18E09-1320-4DEB-A38B-2A4821B8410D}|Csharp_homestudy\\Csharp_homestudy.csproj|solutionrelative:csharp_homestudy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "study.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Csharp_homestudy\\Csharp_homestudy\\study.cs",
+              "RelativeDocumentMoniker": "Csharp_homestudy\\study.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Csharp_homestudy\\Csharp_homestudy\\study.cs",
+              "RelativeToolTip": "Csharp_homestudy\\study.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAAwGYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:36:27.402Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Csharp_homestudy\\Csharp_homestudy\\Program.cs",
+              "RelativeDocumentMoniker": "Csharp_homestudy\\Program.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Csharp_homestudy\\Csharp_homestudy\\Program.cs",
+              "RelativeToolTip": "Csharp_homestudy\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T11:00:49.142Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
