@@ -1,7 +1,0 @@
-C:\study\Csharp-language\Csharp_homestudy\Csharp_homestudy\bin\Debug\Csharp_homestudy.exe.config
-C:\study\Csharp-language\Csharp_homestudy\Csharp_homestudy\bin\Debug\Csharp_homestudy.exe
-C:\study\Csharp-language\Csharp_homestudy\Csharp_homestudy\bin\Debug\Csharp_homestudy.pdb
-C:\study\Csharp-language\Csharp_homestudy\Csharp_homestudy\obj\Debug\Csharp_homestudy.csproj.AssemblyReference.cache
-C:\study\Csharp-language\Csharp_homestudy\Csharp_homestudy\obj\Debug\Csharp_homestudy.csproj.CoreCompileInputs.cache
-C:\study\Csharp-language\Csharp_homestudy\Csharp_homestudy\obj\Debug\Csharp_homestudy.exe
-C:\study\Csharp-language\Csharp_homestudy\Csharp_homestudy\obj\Debug\Csharp_homestudy.pdb
