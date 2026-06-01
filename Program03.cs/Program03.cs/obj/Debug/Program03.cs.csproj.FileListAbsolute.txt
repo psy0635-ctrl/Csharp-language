@@ -1,0 +1,7 @@
+C:\study\Csharp-language\Program03.cs\Program03.cs\bin\Debug\Program03.cs.exe.config
+C:\study\Csharp-language\Program03.cs\Program03.cs\bin\Debug\Program03.cs.exe
+C:\study\Csharp-language\Program03.cs\Program03.cs\bin\Debug\Program03.cs.pdb
+C:\study\Csharp-language\Program03.cs\Program03.cs\obj\Debug\Program03.cs.csproj.AssemblyReference.cache
+C:\study\Csharp-language\Program03.cs\Program03.cs\obj\Debug\Program03.cs.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\Program03.cs\Program03.cs\obj\Debug\Program03.cs.exe
+C:\study\Csharp-language\Program03.cs\Program03.cs\obj\Debug\Program03.cs.pdb

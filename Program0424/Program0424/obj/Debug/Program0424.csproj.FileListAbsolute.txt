@@ -1,0 +1,10 @@
+C:\study\Csharp-language\Program0424\Program0424\bin\Debug\Program0424.exe.config
+C:\study\Csharp-language\Program0424\Program0424\bin\Debug\Program0424.exe
+C:\study\Csharp-language\Program0424\Program0424\bin\Debug\Program0424.pdb
+C:\study\Csharp-language\Program0424\Program0424\obj\Debug\Program0424.csproj.AssemblyReference.cache
+C:\study\Csharp-language\Program0424\Program0424\obj\Debug\Program0424.Form1.resources
+C:\study\Csharp-language\Program0424\Program0424\obj\Debug\Program0424.Properties.Resources.resources
+C:\study\Csharp-language\Program0424\Program0424\obj\Debug\Program0424.csproj.GenerateResource.cache
+C:\study\Csharp-language\Program0424\Program0424\obj\Debug\Program0424.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\Program0424\Program0424\obj\Debug\Program0424.exe
+C:\study\Csharp-language\Program0424\Program0424\obj\Debug\Program0424.pdb

@@ -1,0 +1,7 @@
+C:\study\Csharp-language\Program0403\Program0403\obj\Debug\Program0403.csproj.AssemblyReference.cache
+C:\study\Csharp-language\Program0403\Program0403\obj\Debug\Program0403.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\Program0403\Program0403\bin\Debug\Program0403.exe.config
+C:\study\Csharp-language\Program0403\Program0403\bin\Debug\Program0403.exe
+C:\study\Csharp-language\Program0403\Program0403\bin\Debug\Program0403.pdb
+C:\study\Csharp-language\Program0403\Program0403\obj\Debug\Program0403.exe
+C:\study\Csharp-language\Program0403\Program0403\obj\Debug\Program0403.pdb

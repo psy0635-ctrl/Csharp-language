@@ -38,11 +38,11 @@ namespace Program0410  // 코드를 묶는 이름공간 (폴더 같은 개념)
 
         Product potato = new Product(); // 첫 번째 상품(객체) 만들기
         potato.name = "감자";
-            potato.price = 2000;
+        potato.price = 2000;
 
-            Product tomato = new Product(); // 두 번째 상품(객체) 만들기
+        Product tomato = new Product(); // 두 번째 상품(객체) 만들기
         tomato.name = "토마토";
-            tomato.price = 3000;
+        tomato.price = 3000;
 
             // 바구니(list)에 위에서 만든 상품들을 하나씩 담습니다.
             list.Add(potato);

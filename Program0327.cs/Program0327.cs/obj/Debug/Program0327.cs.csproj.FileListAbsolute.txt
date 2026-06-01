@@ -1,0 +1,11 @@
+C:\study\Csharp-language\Program0327.cs\Program0327.cs\bin\Debug\Program0327.cs.exe.config
+C:\study\Csharp-language\Program0327.cs\Program0327.cs\bin\Debug\Program0327.cs.exe
+C:\study\Csharp-language\Program0327.cs\Program0327.cs\bin\Debug\Program0327.cs.pdb
+C:\study\Csharp-language\Program0327.cs\Program0327.cs\obj\Debug\Program0327.cs.csproj.AssemblyReference.cache
+C:\study\Csharp-language\Program0327.cs\Program0327.cs\obj\Debug\Program0327.cs.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\Program0327.cs\Program0327.cs\obj\Debug\Program0327.cs.exe
+C:\study\Csharp-language\Program0327.cs\Program0327.cs\obj\Debug\Program0327.cs.pdb
+C:\study\Csharp-language\Program0327.cs\Program2026.cs\obj\Debug\Program0327.cs.csproj.AssemblyReference.cache
+C:\study\Csharp-language\Program0327.cs\Program2026.cs\obj\Debug\Program0327.cs.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\Program0327.cs\Program2026.cs\obj\Debug\Program0327.cs.exe
+C:\study\Csharp-language\Program0327.cs\Program2026.cs\obj\Debug\Program0327.cs.pdb

@@ -1,0 +1,10 @@
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\bin\Debug\WindowsForms_0515_03.exe.config
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\bin\Debug\WindowsForms_0515_03.exe
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\bin\Debug\WindowsForms_0515_03.pdb
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\obj\Debug\WindowsForms_0515_03.csproj.AssemblyReference.cache
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\obj\Debug\WindowsForms_0515_03.Form1.resources
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\obj\Debug\WindowsForms_0515_03.Properties.Resources.resources
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\obj\Debug\WindowsForms_0515_03.csproj.GenerateResource.cache
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\obj\Debug\WindowsForms_0515_03.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\obj\Debug\WindowsForms_0515_03.exe
+C:\study\Csharp-language\WindowsForms_0515_03\WindowsForms_0515_03\obj\Debug\WindowsForms_0515_03.pdb

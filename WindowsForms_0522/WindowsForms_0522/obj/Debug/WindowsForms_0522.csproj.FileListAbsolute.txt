@@ -1,0 +1,10 @@
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\bin\Debug\WindowsForms_0522.exe.config
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\bin\Debug\WindowsForms_0522.exe
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\bin\Debug\WindowsForms_0522.pdb
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\obj\Debug\WindowsForms_0522.csproj.AssemblyReference.cache
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\obj\Debug\WindowsForms_0522.Form1.resources
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\obj\Debug\WindowsForms_0522.Properties.Resources.resources
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\obj\Debug\WindowsForms_0522.csproj.GenerateResource.cache
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\obj\Debug\WindowsForms_0522.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\obj\Debug\WindowsForms_0522.exe
+C:\study\Csharp-language\WindowsForms_0522\WindowsForms_0522\obj\Debug\WindowsForms_0522.pdb

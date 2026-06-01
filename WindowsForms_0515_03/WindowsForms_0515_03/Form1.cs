@@ -16,7 +16,7 @@ namespace WindowsForms_0515_03
         // 사용자가 메뉴 버튼을 누르면 Product 객체가 여기에 추가됨
         List<Product> cartList = new List<Product>();
 
-        public Form1()
+        public Form1() // 생성자
         {
             // Visual Studio 디자이너에서 만든 버튼, 라벨, 그리드뷰 등을 불러오는 코드
             InitializeComponent();
@@ -73,7 +73,7 @@ namespace WindowsForms_0515_03
             // 총액 표시
             label2.Text = total.ToString() + "원";
 
-            // 장바구니 표 갱신
+            // 장바구니 표 새로고침
             RefreshCart();
         }
 

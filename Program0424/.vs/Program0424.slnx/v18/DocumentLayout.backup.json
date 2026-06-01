@@ -1,0 +1,91 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\study\\Csharp-language\\Program0424\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|c:\\study\\csharp-language\\program0424\\program0424\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|solutionrelative:program0424\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|c:\\study\\csharp-language\\program0424\\program0424\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|solutionrelative:program0424\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|c:\\study\\csharp-language\\program0424\\program0424\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|solutionrelative:program0424\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|c:\\study\\csharp-language\\program0424\\program0424\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87109FDF-F28F-4071-BAFD-8A5EACECADE4}|Program0424\\Program0424.csproj|solutionrelative:program0424\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Program.cs",
+              "RelativeDocumentMoniker": "Program0424\\Program.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Program.cs",
+              "RelativeToolTip": "Program0424\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T00:23:49.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "Program0424\\Form1.Designer.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Form1.Designer.cs",
+              "RelativeToolTip": "Program0424\\Form1.Designer.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAASwC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T00:21:55.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Form1.cs",
+              "RelativeDocumentMoniker": "Program0424\\Form1.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Form1.cs",
+              "RelativeToolTip": "Program0424\\Form1.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAADgv4wAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T00:14:12.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Form1.cs",
+              "RelativeDocumentMoniker": "Program0424\\Form1.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Form1.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "Program0424\\Form1.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T00:08:05.644Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

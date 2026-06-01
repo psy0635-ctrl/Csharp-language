@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\study\\Csharp-language\\Program0410\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{54AFF236-30E1-43DF-B38F-719BA67815E0}|Program0410\\Program0410.csproj|c:\\study\\csharp-language\\program0410\\program0410\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AFF236-30E1-43DF-B38F-719BA67815E0}|Program0410\\Program0410.csproj|solutionrelative:program0410\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Program0410\\Program0410\\Program.cs",
+              "RelativeDocumentMoniker": "Program0410\\Program.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Program0410\\Program0410\\Program.cs",
+              "RelativeToolTip": "Program0410\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T23:58:55.756Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\bin\Debug\WindowsForms4010.exe.config
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\bin\Debug\WindowsForms4010.exe
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\bin\Debug\WindowsForms4010.pdb
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\obj\Debug\WindowsForms4010.csproj.AssemblyReference.cache
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\obj\Debug\WindowsForms4010.Form1.resources
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\obj\Debug\WindowsForms4010.Properties.Resources.resources
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\obj\Debug\WindowsForms4010.csproj.GenerateResource.cache
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\obj\Debug\WindowsForms4010.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\obj\Debug\WindowsForms4010.exe
+C:\study\Csharp-language\WindowsForms4010\WindowsForms4010\obj\Debug\WindowsForms4010.pdb

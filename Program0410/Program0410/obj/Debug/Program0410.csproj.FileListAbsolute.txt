@@ -1,0 +1,7 @@
+C:\study\Csharp-language\Program0410\Program0410\obj\Debug\Program0410.csproj.AssemblyReference.cache
+C:\study\Csharp-language\Program0410\Program0410\obj\Debug\Program0410.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\Program0410\Program0410\bin\Debug\Program0410.exe.config
+C:\study\Csharp-language\Program0410\Program0410\bin\Debug\Program0410.exe
+C:\study\Csharp-language\Program0410\Program0410\bin\Debug\Program0410.pdb
+C:\study\Csharp-language\Program0410\Program0410\obj\Debug\Program0410.exe
+C:\study\Csharp-language\Program0410\Program0410\obj\Debug\Program0410.pdb
