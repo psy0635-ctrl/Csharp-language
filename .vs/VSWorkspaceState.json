@@ -1,5 +1,6 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\Program0403",
     "\\Program0403\\Program0403",
@@ -11,6 +12,9 @@
     "\\WindowForms0417\\Program0417",
     "\\WindowsForms4010",
     "\\WindowsForms4010\\WindowsForms4010"
+=======
+    ""
+>>>>>>> 1d748c6374079128c8aa39ace24b62249ffc78e8
   ],
   "PreviewInSolutionExplorer": false
 }

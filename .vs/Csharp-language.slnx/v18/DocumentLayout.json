@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "C:\\study\\Csharp-language\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\study\\Csharp-language\\WindowsForms4010\\WindowsForms4010\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WindowsForms4010\\WindowsForms4010\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,6 +18,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\study\\Csharp-language\\WindowsForms4010\\WindowsForms4010\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WindowsForms4010\\WindowsForms4010\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\study\\Csharp-language\\Csharp-language\\Study0327\\01_SwitchIf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Csharp-language\\Study0327\\01_SwitchIf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> 1d748c6374079128c8aa39ace24b62249ffc78e8
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +31,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 2,
+=======
+          "SelectedChildIndex": 1,
+>>>>>>> 1d748c6374079128c8aa39ace24b62249ffc78e8
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,6 +43,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 1,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\study\\Csharp-language\\Program0424\\Program0424\\Form1.Designer.cs",
@@ -82,6 +92,17 @@
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T03:44:14.571Z",
+=======
+              "DocumentIndex": 0,
+              "Title": "01_SwitchIf.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\Csharp-language\\Study0327\\01_SwitchIf.cs",
+              "RelativeDocumentMoniker": "Csharp-language\\Study0327\\01_SwitchIf.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\Csharp-language\\Study0327\\01_SwitchIf.cs",
+              "RelativeToolTip": "Csharp-language\\Study0327\\01_SwitchIf.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-30T07:44:26.524Z",
+>>>>>>> 1d748c6374079128c8aa39ace24b62249ffc78e8
               "EditorCaption": ""
             }
           ]
