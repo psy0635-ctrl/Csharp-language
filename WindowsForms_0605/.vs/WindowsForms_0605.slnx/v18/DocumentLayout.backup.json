@@ -1,0 +1,98 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\study\\Csharp-language\\WindowsForms_0605\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|c:\\study\\csharp-language\\windowsforms_0605\\windowsforms_0605\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|solutionrelative:windowsforms_0605\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|C:\\study\\Csharp-language\\WindowsForms_0605\\windowsforms_0605\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|solutionrelative:windowsforms_0605\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|solutionrelative:WindowsForms_0605\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|C:\\study\\Csharp-language\\WindowsForms_0605\\windowsforms_0605\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4854F99-F237-4D5D-B762-A3D6D3C287A8}|WindowsForms_0605\\WindowsForms_0605.csproj|solutionrelative:windowsforms_0605\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Program.cs",
+              "RelativeDocumentMoniker": "WindowsForms_0605\\Program.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Program.cs",
+              "RelativeToolTip": "WindowsForms_0605\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T07:39:23.328Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "WindowsForms_0605\\Form1.Designer.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Form1.Designer.cs",
+              "RelativeToolTip": "WindowsForms_0605\\Form1.Designer.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAUwH4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T07:39:25.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Form1.cs",
+              "RelativeDocumentMoniker": "WindowsForms_0605\\Form1.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Form1.cs",
+              "RelativeToolTip": "WindowsForms_0605\\Form1.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAgwFgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T01:11:37.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Form1.cs",
+              "RelativeDocumentMoniker": "WindowsForms_0605\\Form1.cs",
+              "ToolTip": "C:\\study\\Csharp-language\\WindowsForms_0605\\WindowsForms_0605\\Form1.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "WindowsForms_0605\\Form1.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T00:34:17.005Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

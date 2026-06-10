@@ -1,0 +1,15 @@
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsForms_0605.csproj.AssemblyReference.cache
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsForms_0605.Form1.resources
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsForms_0605.Properties.Resources.resources
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsForms_0605.csproj.GenerateResource.cache
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsForms_0605.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\bin\Debug\cylinderoff.png
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\bin\Debug\cylinderon.png
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\bin\Debug\WindowsForms_0605.exe.config
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\bin\Debug\WindowsForms_0605.exe
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\bin\Debug\WindowsForms_0605.pdb
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsForms_0605.exe
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsForms_0605.pdb
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\bin\Debug\ACTMULTILIB_K.dll
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\bin\Debug\ACTMULTILIB_K.pdb
+C:\study\Csharp-language\WindowsForms_0605\WindowsForms_0605\obj\Debug\WindowsF.BFE81E8A.Up2Date
