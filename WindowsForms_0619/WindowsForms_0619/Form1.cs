@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ACTMULTILIB_K;
 
@@ -17,14 +10,18 @@ namespace WindowsForms_0619
         // 이걸로 연결(Open), 읽기(Read), 쓰기(Write), 종료(Close)를 함
         ActEasyIF control = new ActEasyIF();
 
-        // 센서 입력값 저장 (X0 워드를 통째로 읽어옴)
-        short sensor = 0;
-
         // 출력값 저장 (Y0 워드. 비트마다 실린더/리프트 신호)
         short output = 0;
 
         // 현재 자동운전 모드인지 여부 (true = 자동, false = 수동/대기)
         bool autoMode = false;
+
+        // PLC 연결/종료 상태
+        bool plcConnected = false;
+        bool closing = false;
+
+        // 마지막으로 PLC에 쓴 Y0 값. 같은 값을 매 틱 반복 전송하지 않기 위해 사용.
+        short lastWrittenOutput = short.MinValue;
 
         const short Y_B_FORWARD = 0x0002;  // Y1
         const short Y_B_BACKWARD = 0x0004; // Y2
@@ -70,6 +67,7 @@ namespace WindowsForms_0619
             // PLC 논리 스테이션 번호 (반드시 Open() 전에 설정)
             control.ActLogicalStationNumber = 1;
 
+            timer1.Interval = 250;      // ACT DLL 통신 안정성을 위해 너무 촘촘한 폴링은 피함
             timer1.Enabled = false;     // 연결 전에는 타이머 OFF
             button10.Enabled = false;   // 자동시작 막기
             button11.Enabled = false;   // 자동정지 막기
@@ -82,8 +80,23 @@ namespace WindowsForms_0619
         private void button9_Click(object sender, EventArgs e)
         {
             // Open() 반환값 0 = 연결 성공
-            if (control.Open() == 0)
+            int openResult;
+            try
             {
+                openResult = control.Open();
+            }
+            catch
+            {
+                openResult = -1;
+            }
+
+            if (openResult == 0)
+            {
+                plcConnected = true;
+                output = 0;
+                lastWrittenOutput = short.MinValue;
+                WriteY(0, true);          // 이전 실행에서 남은 출력 신호 초기화
+
                 MessageBox.Show("연결되었습니다.");
 
                 timer1.Enabled = true;      // 상태 표시용 타이머 ON (연결되면 항상 켜둠)
@@ -91,7 +104,6 @@ namespace WindowsForms_0619
                 button11.Enabled = true;    // 자동정지 가능
                 button9.Enabled = false;    // 연결 버튼 비활성화(중복 연결 방지)
                 SetManualButtons(true);     // 연결되면 수동 버튼 사용 가능
-                WriteY(0);                   // 이전 실행에서 남은 출력 신호 초기화
 
                 label1.Text = "모드: 수동(대기)";
             }
@@ -129,8 +141,9 @@ namespace WindowsForms_0619
         private void timer1_Tick(object sender, EventArgs e)
         {
             // 재진입 방지: 이전 틱이 아직 PLC 통신 중이면 이번 틱은 건너뜀
-            if (ticking) return;
+            if (ticking || !plcConnected || closing) return;
             ticking = true;
+            timer1.Stop();
             try
             {
                 TickBody();
@@ -142,6 +155,10 @@ namespace WindowsForms_0619
             finally
             {
                 ticking = false;
+                if (plcConnected && !closing)
+                {
+                    timer1.Start();
+                }
             }
         }
 
@@ -149,10 +166,12 @@ namespace WindowsForms_0619
         private void TickBody()
         {
             // 1) 센서 읽기 (X0 워드 = 16비트 한 번에 읽음)
-            control.ReadDeviceBlock2("X0", 1, out sensor);
-
-            // 음수 처리를 막기 위해 ushort로 캐스팅 후 int로 변환
-            int s = (int)(ushort)sensor;
+            int s;
+            if (!TryReadSensors(out s))
+            {
+                label1.Text = "PLC 통신 대기/재시도 중";
+                return;
+            }
 
             // 센서 비트 분리
             bool bFwdDone = (s & 0x0004) != 0; // X02 B전진완료
@@ -296,13 +315,49 @@ namespace WindowsForms_0619
             }
         }
 
-        //  Y0 워드를 '정확한 값'으로 덮어쓴다(다른 비트는 모두 0).
-        //   - 자동 순환은 매 단계 하나의 액추에이터만 구동하므로,
-        //     이전 단계의 출력 비트가 남아 충돌하지 않도록 워드 전체를 지정한다.
-        private void WriteY(short word)
+        // PLC X0 읽기. ACT DLL 내부 순간 오류가 앱 전체로 번지지 않게 한 곳에서 처리한다.
+        private bool TryReadSensors(out int value)
         {
-            output = word;
-            control.WriteDeviceBlock2("Y0", 1, ref output);
+            value = 0;
+            if (!plcConnected || closing) return false;
+
+            try
+            {
+                short readValue;
+                int result = control.ReadDeviceBlock2("X0", 1, out readValue);
+                if (result != 0) return false;
+
+                value = (int)(ushort)readValue;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // PLC Y0 쓰기. 자동 순환에서는 매 단계 하나의 액추에이터만 구동하도록 워드 전체를 지정한다.
+        // 같은 출력은 다시 쓰지 않아 ACT DLL 호출 횟수를 줄인다.
+        private bool WriteY(short word, bool force = false)
+        {
+            if (!plcConnected) return false;
+            if (closing && !force) return false;
+            if (!force && word == lastWrittenOutput) return true;
+
+            try
+            {
+                short writeValue = word;
+                int result = control.WriteDeviceBlock2("Y0", 1, ref writeValue);
+                if (result != 0) return false;
+
+                output = word;
+                lastWrittenOutput = word;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         //  공통 출력 함수 : 특정 비트는 ON, 반대 비트는 OFF
@@ -319,8 +374,7 @@ namespace WindowsForms_0619
             // ushort로 캐스팅해 부호 확장(sign extension) 없이 비트 연산
             ushort cur = (ushort)output;
             cur = (ushort)((cur | onBit) & ~offBit);
-            output = (short)cur;
-            control.WriteDeviceBlock2("Y0", 1, ref output);
+            WriteY((short)cur);
         }
 
         //  수동 버튼 활성/비활성 일괄 처리
@@ -339,56 +393,64 @@ namespace WindowsForms_0619
         //  수동 조작 - B실린더
         private void button1_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_B_FORWARD, Y_B_BACKWARD);
-            label4.Text = "B실린더: 전진 명령";
+            RunManualCommand(Y_B_FORWARD, Y_B_BACKWARD, label4, "B실린더: 전진 명령");
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_B_BACKWARD, Y_B_FORWARD);
-            label4.Text = "B실린더: 후진 명령";
+            RunManualCommand(Y_B_BACKWARD, Y_B_FORWARD, label4, "B실린더: 후진 명령");
         }
 
         //  수동 조작 - C실린더
         private void button3_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_C_FORWARD, Y_C_BACKWARD);
-            label5.Text = "C실린더: 전진 명령";
+            RunManualCommand(Y_C_FORWARD, Y_C_BACKWARD, label5, "C실린더: 전진 명령");
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_C_BACKWARD, Y_C_FORWARD);
-            label5.Text = "C실린더: 후진 명령";
+            RunManualCommand(Y_C_BACKWARD, Y_C_FORWARD, label5, "C실린더: 후진 명령");
         }
 
         //  수동 조작 - 리프트 A (Y5 상승 / Y6 하강)
         private void button5_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_LIFTA_UP, Y_LIFTA_DOWN);
-            label6.Text = "리프트A: 상승 신호 ON";
+            RunManualCommand(Y_LIFTA_UP, Y_LIFTA_DOWN, label6, "리프트A: 상승 신호 ON");
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_LIFTA_DOWN, Y_LIFTA_UP);
-            label6.Text = "리프트A: 하강 신호 ON";
+            RunManualCommand(Y_LIFTA_DOWN, Y_LIFTA_UP, label6, "리프트A: 하강 신호 ON");
         }
 
         //  수동 조작 - 리프트 B (Y8 상승 / Y7 하강)
         private void button7_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_LIFTB_UP, Y_LIFTB_DOWN);
-            label7.Text = "리프트B: 상승 신호 ON";
+            RunManualCommand(Y_LIFTB_UP, Y_LIFTB_DOWN, label7, "리프트B: 상승 신호 ON");
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            SetOutput(Y_LIFTB_DOWN, Y_LIFTB_UP);
-            label7.Text = "리프트B: 하강 신호 ON";
+            RunManualCommand(Y_LIFTB_DOWN, Y_LIFTB_UP, label7, "리프트B: 하강 신호 ON");
+        }
+
+        private void RunManualCommand(short onBit, short offBit, Label statusLabel, string statusText)
+        {
+            SetOutput(onBit, offBit);
+            statusLabel.Text = statusText;
         }
 
         //  폼 종료 시 PLC 연결 해제
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            closing = true;
+            autoMode = false;
+            timer1.Stop();
+
+            if (plcConnected)
+            {
+                WriteY(0, true);
+            }
+
             try { control.Close(); } catch { }
+            plcConnected = false;
         }
     }
 }
