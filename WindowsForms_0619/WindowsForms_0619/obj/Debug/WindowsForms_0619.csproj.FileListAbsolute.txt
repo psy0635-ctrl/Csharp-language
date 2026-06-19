@@ -1,0 +1,13 @@
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\bin\Debug\WindowsForms_0619.exe.config
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\bin\Debug\WindowsForms_0619.exe
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\bin\Debug\WindowsForms_0619.pdb
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\bin\Debug\ACTMULTILIB_K.dll
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\bin\Debug\ACTMULTILIB_K.pdb
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsForms_0619.csproj.AssemblyReference.cache
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsForms_0619.Form1.resources
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsForms_0619.Properties.Resources.resources
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsForms_0619.csproj.GenerateResource.cache
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsForms_0619.csproj.CoreCompileInputs.cache
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsF.6B0D1E26.Up2Date
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsForms_0619.exe
+C:\study\Csharp-language\WindowsForms_0619\WindowsForms_0619\obj\Debug\WindowsForms_0619.pdb
