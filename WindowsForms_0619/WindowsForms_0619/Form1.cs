@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using ACTMULTILIB_K;
 
@@ -6,35 +6,28 @@ namespace WindowsForms_0619
 {
     public partial class Form1 : Form
     {
-        // PLC 시뮬레이터와 통신하는 객체
-        // 이걸로 연결(Open), 읽기(Read), 쓰기(Write), 종료(Close)를 함
+        // PLC 시뮬레이터랑 통신하는 객체
         ActEasyIF control = new ActEasyIF();
 
-        // 출력값 저장 (Y0 워드. 비트마다 실린더/리프트 신호)
-        short output = 0;
-
-        // 현재 자동운전 모드인지 여부 (true = 자동, false = 수동/대기)
-        bool autoMode = false;
-
-        // PLC 연결/종료 상태
+        short output = 0;       // 지금 Y0에 내보내는 값
+        bool autoMode = false;  // 자동운전 중이면 true
         bool plcConnected = false;
-        bool closing = false;
+        bool closing = false;   // 폼 닫는 중
 
-        // 마지막으로 PLC에 쓴 Y0 값. 같은 값을 매 틱 반복 전송하지 않기 위해 사용.
+        // 직전에 Y0에 쓴 값. 똑같으면 또 안 보내려고 기억해둠
         short lastWrittenOutput = short.MinValue;
 
-        const short Y_B_FORWARD = 0x0002;  // Y1
-        const short Y_B_BACKWARD = 0x0004; // Y2
-        const short Y_C_FORWARD = 0x0008;  // Y3
-        const short Y_C_BACKWARD = 0x0010; // Y4
-        const short Y_LIFTA_UP = 0x0020;   // Y5
-        const short Y_LIFTA_DOWN = 0x0040; // Y6
-        const short Y_LIFTB_UP = 0x0080;   // Y7, 실제 시뮬레이터에서 X8(리프트B 상승 완료)
-        const short Y_LIFTB_DOWN = 0x0100; // Y8, 실제 시뮬레이터에서 X9(리프트B 하강 완료)
+        // Y 출력 비트
+        const short Y_B_FORWARD = 0x0002;  // Y1 B전진
+        const short Y_B_BACKWARD = 0x0004; // Y2 B후진
+        const short Y_C_FORWARD = 0x0008;  // Y3 C전진
+        const short Y_C_BACKWARD = 0x0010; // Y4 C후진
+        const short Y_LIFTA_UP = 0x0020;   // Y5 리프트A 상승
+        const short Y_LIFTA_DOWN = 0x0040; // Y6 리프트A 하강
+        const short Y_LIFTB_UP = 0x0080;   // Y7 (시뮬에서 이게 리프트B 상승, 완료는 X8)
+        const short Y_LIFTB_DOWN = 0x0100; // Y8 (시뮬에서 이게 리프트B 하강, 완료는 X9)
 
-        // 자동 순환 상태머신 단계
-        //  - 실린더가 물체를 리프트 위로 밀고,
-        //    리프트센서(A/B)가 ON 되면 실린더 후진 후 리프트를 상/하강한다.
+        // 자동운전 단계. 실린더로 밀어서 센서 감지되면 후진하고 리프트 올리고 내림
         enum AutoStep
         {
             HomeB = 0,
@@ -51,10 +44,7 @@ namespace WindowsForms_0619
 
         AutoStep autoStep = AutoStep.HomeB;
 
-        // 타이머 재진입 방지 플래그
-        //  - ActEasyIF(ReadDeviceBlock2/WriteDeviceBlock2)는 재진입에 안전하지 않음.
-        //  - 모달 메시지 루프 등으로 timer1_Tick이 겹쳐 호출되면 라이브러리 내부
-        //    상태가 깨져 NullReferenceException이 발생하므로, 한 번에 하나만 실행.
+        // 타이머가 겹쳐 돌면 통신이 꼬여서 가끔 에러남. 한 번에 하나만 돌게 막는 용도
         bool ticking = false;
 
         public Form1()
@@ -64,26 +54,24 @@ namespace WindowsForms_0619
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // PLC 논리 스테이션 번호 (반드시 Open() 전에 설정)
-            control.ActLogicalStationNumber = 1;
+            control.ActLogicalStationNumber = 1; // 스테이션 번호 (Open 전에 세팅해야 함)
 
-            timer1.Interval = 250;      // ACT DLL 통신 안정성을 위해 너무 촘촘한 폴링은 피함
-            timer1.Enabled = false;     // 연결 전에는 타이머 OFF
-            button10.Enabled = false;   // 자동시작 막기
-            button11.Enabled = false;   // 자동정지 막기
-            SetManualButtons(false);    // 연결 전에는 수동 버튼 전부 잠금
+            timer1.Interval = 250;      // 너무 빨리 폴링하면 통신 불안정해서 좀 늘림
+            timer1.Enabled = false;
+            button10.Enabled = false;   // 자동시작
+            button11.Enabled = false;   // 자동정지
+            SetManualButtons(false);    // 연결 전엔 버튼 다 잠금
 
             label1.Text = "모드: 대기";
         }
 
-        //  연결 버튼 : PLC 시뮬레이터에 연결
+        // 연결 버튼
         private void button9_Click(object sender, EventArgs e)
         {
-            // Open() 반환값 0 = 연결 성공
             int openResult;
             try
             {
-                openResult = control.Open();
+                openResult = control.Open(); // 0이면 연결 성공
             }
             catch
             {
@@ -95,15 +83,15 @@ namespace WindowsForms_0619
                 plcConnected = true;
                 output = 0;
                 lastWrittenOutput = short.MinValue;
-                WriteY(0, true);          // 이전 실행에서 남은 출력 신호 초기화
+                WriteY(0, true);          // 전에 켜져있던 출력 있으면 초기화
 
                 MessageBox.Show("연결되었습니다.");
 
-                timer1.Enabled = true;      // 상태 표시용 타이머 ON (연결되면 항상 켜둠)
-                button10.Enabled = true;    // 자동시작 가능
-                button11.Enabled = true;    // 자동정지 가능
-                button9.Enabled = false;    // 연결 버튼 비활성화(중복 연결 방지)
-                SetManualButtons(true);     // 연결되면 수동 버튼 사용 가능
+                timer1.Enabled = true;
+                button10.Enabled = true;
+                button11.Enabled = true;
+                button9.Enabled = false;    // 또 누르지 못하게
+                SetManualButtons(true);
 
                 label1.Text = "모드: 수동(대기)";
             }
@@ -113,34 +101,29 @@ namespace WindowsForms_0619
             }
         }
 
-        //  자동운전 시작 버튼 : 자동 모드 ON
+        // 자동시작 버튼
         private void button10_Click(object sender, EventArgs e)
         {
             autoMode = true;
-            autoStep = AutoStep.HomeB; // 시작 시 실린더 원점 정렬부터 수행
-            SetManualButtons(false);    // 자동운전 중에는 수동 조작 잠금
-            // MessageBox는 모달 메시지 루프를 돌려 timer1_Tick을 재진입시키므로 사용하지 않음
-            // (재진입 시 ActEasyIF 내부 상태가 깨져 NullReferenceException 발생)
+            autoStep = AutoStep.HomeB; // 처음엔 실린더 원점부터 맞추기
+            SetManualButtons(false);   // 자동 중엔 수동 못 누르게
+            // 여기서 MessageBox 띄우면 타이머가 겹쳐 돌면서 에러나서 라벨만 바꿈
             label1.Text = "모드: 자동운전 중";
         }
 
-        //  자동운전 정지 버튼 : 자동 모드 OFF (연결은 유지)
-        //  - 연결을 끊지 않으므로 상태 표시는 계속되고,
-        //    수동 조작도 다시 가능해집니다.
+        // 자동정지 버튼 (연결은 그대로 두고 자동만 끔)
         private void button11_Click(object sender, EventArgs e)
         {
             autoMode = false;
-            WriteY(0);                   // 자동 출력 정지 후 수동 조작으로 전환
-            SetManualButtons(true);     // 수동 조작 다시 허용
+            WriteY(0);                  // 출력 끄기
+            SetManualButtons(true);     // 다시 수동 가능
             label1.Text = "모드: 수동(대기)";
         }
 
-        //  타이머 틱 : 일정 간격마다 자동 실행
-        //   1) 센서를 읽어 GUI 상태를 항상 갱신
-        //   2) 자동 모드일 때만 자동 시퀀스 실행
+        // 타이머: 일정 간격마다 센서 읽어서 화면 갱신, 자동이면 시퀀스 진행
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // 재진입 방지: 이전 틱이 아직 PLC 통신 중이면 이번 틱은 건너뜀
+            // 앞 틱이 아직 통신 중이면 이번 건 그냥 넘김
             if (ticking || !plcConnected || closing) return;
             ticking = true;
             timer1.Stop();
@@ -150,7 +133,7 @@ namespace WindowsForms_0619
             }
             catch
             {
-                // 통신 순간 오류로 앱 전체가 죽지 않도록 방어. 다음 틱에서 자동 복구.
+                // 통신 잠깐 튀어도 프로그램 안 죽게. 다음 틱에서 다시 시도됨
             }
             finally
             {
@@ -162,10 +145,9 @@ namespace WindowsForms_0619
             }
         }
 
-        // 실제 센서 읽기 + 상태 표시 + 자동 시퀀스 본체
         private void TickBody()
         {
-            // 1) 센서 읽기 (X0 워드 = 16비트 한 번에 읽음)
+            // X0 한 워드(16비트) 읽기
             int s;
             if (!TryReadSensors(out s))
             {
@@ -173,19 +155,19 @@ namespace WindowsForms_0619
                 return;
             }
 
-            // 센서 비트 분리
+            // 비트별 센서 상태
             bool bFwdDone = (s & 0x0004) != 0; // X02 B전진완료
             bool bBackDone = (s & 0x0008) != 0; // X03 B후진완료
-            bool cFwdDone = (s & 0x0010) != 0; // X04 C전진완료(실제 동작 기준)
-            bool cBackDone = (s & 0x0020) != 0; // X05 C후진완료(실제 동작 기준)
-            bool liftAUp = (s & 0x0040) != 0; // X6  리프트A 상승완료
-            bool liftADown = (s & 0x0080) != 0; // X7  리프트A 하강완료
-            bool liftBUp = (s & 0x0100) != 0; // X8  리프트B 상승완료
-            bool liftBDown = (s & 0x0200) != 0; // X9  리프트B 하강완료
-            bool liftAOn = (s & 0x0400) != 0; // XA  리프트센서 A
-            bool liftBOn = (s & 0x0800) != 0; // XB  리프트센서 B
+            bool cFwdDone = (s & 0x0010) != 0; // X04 C전진완료
+            bool cBackDone = (s & 0x0020) != 0; // X05 C후진완료
+            bool liftAUp = (s & 0x0040) != 0; // X6 리프트A 상승완료
+            bool liftADown = (s & 0x0080) != 0; // X7 리프트A 하강완료
+            bool liftBUp = (s & 0x0100) != 0; // X8 리프트B 상승완료
+            bool liftBDown = (s & 0x0200) != 0; // X9 리프트B 하강완료
+            bool liftAOn = (s & 0x0400) != 0; // XA 리프트센서 A
+            bool liftBOn = (s & 0x0800) != 0; // XB 리프트센서 B
 
-            // 2) 상태 라벨 갱신 (자동/수동 항상)
+            // 라벨에 현재 상태 표시 (자동/수동 둘 다)
             label2.Text = "리프트센서 A: " + (liftAOn ? "ON (감지)" : "OFF");
             label3.Text = "리프트센서 B: " + (liftBOn ? "ON (감지)" : "OFF");
             label4.Text = "B실린더: " + (bFwdDone ? "전진 완료" : bBackDone ? "후진 완료" : "동작 중");
@@ -193,21 +175,14 @@ namespace WindowsForms_0619
             label6.Text = "리프트A: " + (liftAUp ? "상승 완료" : liftADown ? "하강 완료" : "동작 중");
             label7.Text = "리프트B: " + (liftBUp ? "상승 완료" : liftBDown ? "하강 완료" : "동작 중");
 
-            // 3) 자동 모드: 물체 순환 상태머신
-            //
-            //  [핵심 원리]  실린더 전진으로 물체를 리프트까지 밀고,
-            //  리프트센서(A=XA / B=XB)가 감지되면 실린더를 후진시킨 뒤
-            //  해당 리프트를 상/하강시킨다.
-            //
-            //  순환 경로(사용자 요구 이미지와 동일):
-            //    [B실린더 전진] → 우측 리프트B 센서 감지 → 리프트B 하강
-            //    → [C실린더 전진] → 좌측 리프트A 센서 감지 → 리프트A 상승
-            //    → 반복
             if (!autoMode) return;
 
+            // 자동운전 순서:
+            // B실린더 전진 -> 리프트B 센서 감지 -> 리프트B 하강
+            // -> C실린더 전진 -> 리프트A 센서 감지 -> 리프트A 상승 -> 반복
             switch (autoStep)
             {
-                // 0) B실린더 후진 원점 정렬
+                // B실린더 후진해서 원점 맞추기
                 case AutoStep.HomeB:
                     if (bBackDone)
                     {
@@ -218,7 +193,7 @@ namespace WindowsForms_0619
                     label1.Text = "자동: B실린더 후진 원점";
                     break;
 
-                // 1) C실린더 후진 원점 정렬
+                // C실린더 후진해서 원점 맞추기 (이미 물체 있으면 그 단계로 점프)
                 case AutoStep.HomeC:
                     if (liftBOn && liftBDown) autoStep = AutoStep.ReadyLiftADown;
                     else if (liftBOn) autoStep = AutoStep.MoveLiftBDown;
@@ -231,7 +206,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 2) 우측 리프트B를 상단으로 올려 B실린더가 밀어온 물체를 받을 준비
+                // 리프트B 올려서 받을 준비
                 case AutoStep.ReadyLiftBUp:
                     if (liftBOn) autoStep = AutoStep.RetractBAfterDetect;
                     else if (liftBUp) autoStep = AutoStep.PushToLiftB;
@@ -242,7 +217,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 3) B실린더 전진 → 물체가 리프트B 위에 올라가 센서B가 켜질 때까지 밀기
+                // B실린더 전진해서 센서B 켜질 때까지 밀기
                 case AutoStep.PushToLiftB:
                     if (liftBOn) autoStep = AutoStep.RetractBAfterDetect;
                     else
@@ -252,7 +227,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 4) 센서B 감지 후 B실린더 후진(원위치)
+                // 센서B 감지됐으면 B실린더 후진
                 case AutoStep.RetractBAfterDetect:
                     if (bBackDone) autoStep = AutoStep.MoveLiftBDown;
                     else
@@ -262,7 +237,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 5) 센서B가 감지한 물체를 리프트B로 하강 운반
+                // 리프트B 내려서 물체 옮기기
                 case AutoStep.MoveLiftBDown:
                     if (liftBDown) autoStep = AutoStep.ReadyLiftADown;
                     else
@@ -272,7 +247,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 6) 좌측 리프트A를 하단으로 내려 C실린더가 밀어온 물체를 받을 준비
+                // 리프트A 내려서 받을 준비
                 case AutoStep.ReadyLiftADown:
                     if (liftAOn) autoStep = AutoStep.RetractCAfterDetect;
                     else if (liftADown) autoStep = AutoStep.PushToLiftA;
@@ -283,7 +258,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 7) C실린더 전진 → 물체가 리프트A 위에 올라가 센서A가 켜질 때까지 밀기
+                // C실린더 전진해서 센서A 켜질 때까지 밀기
                 case AutoStep.PushToLiftA:
                     if (liftAOn) autoStep = AutoStep.RetractCAfterDetect;
                     else
@@ -293,7 +268,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 8) 센서A 감지 후 C실린더 후진(원위치)
+                // 센서A 감지됐으면 C실린더 후진
                 case AutoStep.RetractCAfterDetect:
                     if (cBackDone) autoStep = AutoStep.MoveLiftAUp;
                     else
@@ -303,7 +278,7 @@ namespace WindowsForms_0619
                     }
                     break;
 
-                // 9) 센서A가 감지한 물체를 리프트A로 상승 운반 → 반복
+                // 리프트A 올려서 물체 옮기고 처음으로 돌아감
                 case AutoStep.MoveLiftAUp:
                     if (liftAUp) autoStep = AutoStep.ReadyLiftBUp;
                     else
@@ -315,7 +290,7 @@ namespace WindowsForms_0619
             }
         }
 
-        // PLC X0 읽기. ACT DLL 내부 순간 오류가 앱 전체로 번지지 않게 한 곳에서 처리한다.
+        // X0 읽기. 통신 에러나면 false 주고 다음 틱에 다시 시도
         private bool TryReadSensors(out int value)
         {
             value = 0;
@@ -336,8 +311,7 @@ namespace WindowsForms_0619
             }
         }
 
-        // PLC Y0 쓰기. 자동 순환에서는 매 단계 하나의 액추에이터만 구동하도록 워드 전체를 지정한다.
-        // 같은 출력은 다시 쓰지 않아 ACT DLL 호출 횟수를 줄인다.
+        // Y0 쓰기. 직전 값이랑 같으면 그냥 넘어가서 통신 횟수 줄임
         private bool WriteY(short word, bool force = false)
         {
             if (!plcConnected) return false;
@@ -360,24 +334,17 @@ namespace WindowsForms_0619
             }
         }
 
-        //  공통 출력 함수 : 특정 비트는 ON, 반대 비트는 OFF
-        //   - onBit  : 켤 비트 (예: B전진 0x0002)
-        //   - offBit : 끌 비트 (예: B후진 0x0004)
-        //   - 현재 Y0 값을 먼저 읽고 해당 비트만 바꾸므로
-        //     다른 출력 신호는 그대로 유지됩니다.
+        // onBit는 켜고 offBit는 끔. 나머지 출력은 그대로 둠
         private void SetOutput(int onBit, int offBit)
         {
-            // Y0를 다시 읽지 않고, 로컬 output 값을 직접 갱신한다.
-            //  - 모든 Y 출력은 SetOutput만 거치므로 output 필드가 항상 실제 출력과 일치.
-            //  - 매 틱 Y0를 read하면 통신 호출이 2배가 되고(재진입 위험↑),
-            //    일부 환경에서 Y 디바이스 read가 불안정해 NullReferenceException을 유발.
-            // ushort로 캐스팅해 부호 확장(sign extension) 없이 비트 연산
+            // Y0 다시 안 읽고 output 값으로 해당 비트만 바꿈
+            // (ushort로 안 바꾸면 short 부호 때문에 비트연산이 이상해짐)
             ushort cur = (ushort)output;
             cur = (ushort)((cur | onBit) & ~offBit);
             WriteY((short)cur);
         }
 
-        //  수동 버튼 활성/비활성 일괄 처리
+        // 수동 버튼 한꺼번에 켜고 끄기
         private void SetManualButtons(bool enabled)
         {
             button1.Enabled = enabled;  // B전진
@@ -390,7 +357,7 @@ namespace WindowsForms_0619
             button8.Enabled = enabled;  // 리프트B 하강
         }
 
-        //  수동 조작 - B실린더
+        // 수동 - B실린더
         private void button1_Click(object sender, EventArgs e)
         {
             RunManualCommand(Y_B_FORWARD, Y_B_BACKWARD, label4, "B실린더: 전진 명령");
@@ -400,7 +367,7 @@ namespace WindowsForms_0619
             RunManualCommand(Y_B_BACKWARD, Y_B_FORWARD, label4, "B실린더: 후진 명령");
         }
 
-        //  수동 조작 - C실린더
+        // 수동 - C실린더
         private void button3_Click(object sender, EventArgs e)
         {
             RunManualCommand(Y_C_FORWARD, Y_C_BACKWARD, label5, "C실린더: 전진 명령");
@@ -410,7 +377,7 @@ namespace WindowsForms_0619
             RunManualCommand(Y_C_BACKWARD, Y_C_FORWARD, label5, "C실린더: 후진 명령");
         }
 
-        //  수동 조작 - 리프트 A (Y5 상승 / Y6 하강)
+        // 수동 - 리프트A
         private void button5_Click(object sender, EventArgs e)
         {
             RunManualCommand(Y_LIFTA_UP, Y_LIFTA_DOWN, label6, "리프트A: 상승 신호 ON");
@@ -420,12 +387,11 @@ namespace WindowsForms_0619
             RunManualCommand(Y_LIFTA_DOWN, Y_LIFTA_UP, label6, "리프트A: 하강 신호 ON");
         }
 
-        //  수동 조작 - 리프트 B (Y8 상승 / Y7 하강)
+        // 수동 - 리프트B
         private void button7_Click(object sender, EventArgs e)
         {
             RunManualCommand(Y_LIFTB_UP, Y_LIFTB_DOWN, label7, "리프트B: 상승 신호 ON");
         }
-
         private void button8_Click(object sender, EventArgs e)
         {
             RunManualCommand(Y_LIFTB_DOWN, Y_LIFTB_UP, label7, "리프트B: 하강 신호 ON");
@@ -437,7 +403,7 @@ namespace WindowsForms_0619
             statusLabel.Text = statusText;
         }
 
-        //  폼 종료 시 PLC 연결 해제
+        // 폼 닫을 때 출력 끄고 연결 해제
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             closing = true;
